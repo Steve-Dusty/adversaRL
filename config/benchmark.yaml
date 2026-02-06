@@ -1,0 +1,38 @@
+# Benchmark experiment configuration
+benchmark:
+  name: "adversarl_benchmark_v1"
+  num_seeds: 3
+  eval_episodes: 50
+
+conditions:
+  baseline:
+    enabled: true
+    environment: "mujoco"
+    domain_randomization: true
+
+  odyssey_static:
+    enabled: true
+    environment: "odyssey"
+    curriculum: false
+    num_environments: 10  # pre-generated variations
+
+  odyssey_adaptive:
+    enabled: true
+    environment: "odyssey"
+    curriculum: true
+
+metrics:
+  - success_rate
+  - sample_efficiency
+  - visual_generalization
+  - robustness_curve
+  - setup_time
+
+evaluation:
+  test_environments:
+    - "eval_neutral"
+    - "eval_low_light"
+    - "eval_clutter"
+    - "eval_color_shift"
+
+  perturbation_levels: [0.0, 0.25, 0.5, 0.75, 1.0]

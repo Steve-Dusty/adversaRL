@@ -1,0 +1,35 @@
+# Core dependencies
+odyssey>=1.0.0
+anthropic>=0.21.0
+
+# RL frameworks
+gymnasium>=0.29.0
+stable-baselines3>=2.2.0
+sb3-contrib>=2.2.0
+
+# Computer vision and ML
+opencv-python>=4.8.0
+pillow>=10.0.0
+numpy>=1.24.0
+torch>=2.1.0
+torchvision>=0.16.0
+
+# Experiment tracking
+wandb>=0.16.0
+tensorboard>=2.15.0
+
+# Web framework
+fastapi>=0.109.0
+uvicorn>=0.27.0
+websockets>=12.0
+python-dotenv>=1.0.0
+
+# Frontend dev
+httpx>=0.26.0
+
+# Utilities
+pyyaml>=6.0
+tqdm>=4.66.0
+matplotlib>=3.8.0
+seaborn>=0.13.0
+pandas>=2.1.0

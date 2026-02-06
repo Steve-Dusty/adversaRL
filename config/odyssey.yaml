@@ -1,0 +1,39 @@
+# Odyssey API configuration
+api:
+  base_url: "https://api.odyssey.ml"
+  timeout: 30
+  max_retries: 3
+
+stream:
+  portrait: false
+  resolution: "1280x704"  # landscape
+  target_fps: 20
+
+prompts:
+  # Initial environment prompts for different tasks
+  object_grasp:
+    base: "A robotic arm on a white table with a small red cube in front of it, neutral lighting, minimal background"
+
+  # Perturbation categories for curriculum
+  perturbations:
+    lighting:
+      - "switch to harsh overhead fluorescent lighting"
+      - "dim the lights significantly"
+      - "add dramatic side lighting with strong shadows"
+      - "create a sunset lighting effect with warm tones"
+
+    occlusion:
+      - "place a tall transparent glass in front of the object"
+      - "add some clutter partially blocking the object"
+      - "introduce a cardboard box edge obscuring part of the view"
+
+    visual:
+      - "desaturate the scene to near grayscale"
+      - "change the object to match the table color closely"
+      - "add visual noise and grain to the image"
+      - "make the surface reflective and shiny"
+
+    distraction:
+      - "add colorful objects in the background"
+      - "introduce movement in the peripheral view"
+      - "place similar objects near the target"

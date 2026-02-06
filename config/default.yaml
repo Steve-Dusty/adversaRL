@@ -1,0 +1,43 @@
+# Default training configuration
+training:
+  algorithm: "PPO"
+  total_timesteps: 100000
+  learning_rate: 0.0003
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  gae_lambda: 0.95
+  clip_range: 0.2
+  ent_coef: 0.01
+  vf_coef: 0.5
+  max_grad_norm: 0.5
+
+environment:
+  task: "object_grasp"
+  observation_type: "rgb"  # rgb, depth, rgbd
+  image_width: 640
+  image_height: 480
+  frame_skip: 4
+  episode_length: 200
+
+odyssey:
+  portrait: false
+  initial_prompt: "A robotic arm on a table with a small object in front of it, realistic lighting, workshop environment"
+
+curriculum:
+  enabled: true
+  failure_window: 100  # episodes to track for failure detection
+  adaptation_frequency: 50  # episodes between curriculum updates
+  min_success_rate: 0.3  # trigger adaptation below this rate
+  llm_model: "claude-sonnet-4.5"
+
+reward:
+  type: "vision_based"  # vision_based, distance_based, hybrid
+  success_threshold: 0.8
+
+logging:
+  use_wandb: true
+  wandb_project: "adversarl"
+  log_interval: 10
+  save_freq: 1000

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Odyssey Test</title>
+  <style>
+    body {
+      font-family: system-ui;
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #000;
+      color: #0ff;
+    }
+    video {
+      width: 100%;
+      background: #000;
+      border: 2px solid #0ff;
+    }
+    #status {
+      padding: 1rem;
+      background: #111;
+      border: 1px solid #0ff;
+      margin: 1rem 0;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      background: #0ff;
+      color: #000;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <h1>Odyssey Direct Test</h1>
+  <video id="video" autoplay playsinline muted></video>
+  <div id="status">Loading SDK...</div>
+  <button id="start" disabled>Start Stream</button>
+
+  <script type="module">
+    const statusEl = document.getElementById('status');
+    const startBtn = document.getElementById('start');
+    const videoEl = document.getElementById('video');
+
+    try {
+      statusEl.textContent = 'Importing SDK...';
+      const { Odyssey } = await import('https://esm.sh/@odysseyml/odyssey');
+
+      statusEl.textContent = 'SDK loaded. Creating client...';
+      const client = new Odyssey({
+        apiKey: 'ody_Be3JiPrprZrevJ8lpzMr4ilYhBbHpTY5'
+      });
+
+      statusEl.textContent = 'Connecting to Odyssey...';
+      const mediaStream = await client.connect();
+
+      statusEl.textContent = '✅ Connected! MediaStream received.';
+      videoEl.srcObject = mediaStream;
+      startBtn.disabled = false;
+
+      startBtn.onclick = async () => {
+        statusEl.textContent = 'Starting stream...';
+        startBtn.disabled = true;
+
+        await client.startStream({
+          prompt: 'A robotic arm on a table with a red cube',
+          portrait: false
+        });
+
+        statusEl.textContent = '🎬 STREAMING!';
+      };
+
+    } catch (error) {
+      statusEl.textContent = '❌ ERROR: ' + error.message;
+      console.error('Full error:', error);
+    }
+  </script>
+</body>
+</html>

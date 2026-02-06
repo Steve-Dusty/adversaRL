@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0f;
+  --foreground: #ffffff;
+  --cyan: #06b6d4;
+  --magenta: #ec4899;
+  --purple: #a855f7;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom animations */
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.scan-line {
+  animation: scan 3s linear infinite;
+}
+
+/* Glow effects */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+}
+
+.glow-magenta {
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+}
+
+/* Grid animation */
+@keyframes grid-flow {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 4rem 4rem;
+  }
+}
